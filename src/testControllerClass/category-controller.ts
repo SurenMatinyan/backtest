@@ -3,7 +3,7 @@ import {parentModel} from '../testModelClass/index';
 
 
 export default class Category {
-    public static getCategory = async(req: Request, res: Response) => {
+    public static getCategory = async(req: Request, res: Response): Promise<void> => {
         try{
             const categoryParent = await parentModel.findAll({
                 where: { 
@@ -16,7 +16,6 @@ export default class Category {
             categoryParent && res.status(200).json(categoryParent);
         }
         catch(err){
-            console.log(err.message);
             res.status(500).json({message: "server error", err: err.message});
         }
     }
@@ -29,7 +28,6 @@ export default class Category {
             create && res.status(200).json({message: "create new category parent"});
         }
         catch(err){
-            console.log(err.message);
             res.status(500).json({message: "server error", err: err.message});
         }
     }
@@ -41,7 +39,6 @@ export default class Category {
             create && res.status(200).json({message: "create new children category"});
        }
        catch(err){
-        console.log(err.message);
         res.status(500).json({message: "server error", err: err.message});
        }
     }

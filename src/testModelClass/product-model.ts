@@ -11,16 +11,16 @@ import {
     Sequelize,
   } from "sequelize";
 
-  import User from './users-model'
-
-  import sequelize from '../connect/pgSQL';
+  import User from './users-model';
 
   interface ProductAttributes {
     id?: number
     name: string
     price: number
     count: number
+    img: string
     UserId: number
+    ParentId: number
   }
   
   interface ProductCreationAttributes extends Optional<ProductAttributes, "id"> {}
@@ -31,6 +31,8 @@ import {
         public name!: string
         public price!: number
         public count!: number
+        public img!: string
+        public ParentId!: number
         public UserId!: number
 
 
@@ -48,6 +50,8 @@ import {
                 name: { type: DataTypes.STRING },
                 price: { type: DataTypes.INTEGER },
                 count: { type: DataTypes.INTEGER },
+                img: {type: DataTypes.STRING},
+                ParentId: { type: DataTypes.INTEGER},
                 UserId: { type: DataTypes.INTEGER }
             }, {
               tableName: "products",
