@@ -38,7 +38,6 @@ export default class userControler {
     public static createUser = async(req: Request, res: Response) => {
         try{
             const { lastName, firstName, email, password } = req.body;
-            console.log(lastName, firstName, email, password);
             const create = await userModel.create({ lastName, firstName, email, password })
             res.status(200).json({message: "create account"});
         }
@@ -52,8 +51,6 @@ export default class userControler {
     public static createProduct = async(req: Request, res: Response) => {
         try{
             const UserId = req.body.id;
-            
-
             const form = new IncomingForm();
             const uniq = v4();
             const img = `/img/${uniq}.jpg`
